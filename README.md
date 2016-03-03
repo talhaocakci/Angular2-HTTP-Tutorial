@@ -52,6 +52,7 @@ Then, start the server with
 
 ##Further Explanation on client project##
 
+####TypeScript####
 Angular2 uses **Typescript**. 
 
 TypeScript = ES6 + powerful type checking abilities + object oriented features
@@ -67,6 +68,7 @@ This code will asynchronously load the modules to the application.
 
 SystemJS depends on some other libraries namely  *ES6 module loader polyfill* and *Traceur*. You will see the  libraries that can be linked to the project inside *package.json*.
 
+####package.json####
 package.json defines all the dependencies and the metadata of the project. When you invoke **npm i** in command line, all the libraries  defined in this file are installed into your OS if they are missing.
 
 In fact, the libraries are linked into the project when their related js file is included inside the html file. Fo instance the excerpt below includes Angular 2 and RxJS into our project:
@@ -78,3 +80,10 @@ In fact, the libraries are linked into the project when their related js file is
 Please be aware of the path. When you install a package with NPM (NodeJS package manager), related files are bundled inside node_modules folder. The relative path must point to this folder. After that you may point to the library you want.
 
 
+#### index.html ####
+This page is the single page of our SPA (single page application)
+All the modules and libraries are imported into the project via this file. Javascript imports link the external modules. And the Angular 2 components are imported with SystemJS as I said before with 
+
+      System.import('dist/hello')
+
+dist folder contains the javascript components that is converted from TypeScript.
