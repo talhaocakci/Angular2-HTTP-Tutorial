@@ -65,6 +65,16 @@ You will see module loading codes inside index.html with SystemJS such as
 
 This code will asynchronously load the modules to the application.
 
-SystemJS depends on some other libraries namely  *ES6 module loader polyfill* and *Traceur*. You will see that libraries are linked to the project inside *package.json*.
+SystemJS depends on some other libraries namely  *ES6 module loader polyfill* and *Traceur*. You will see the  libraries that can be linked to the project inside *package.json*.
 
 package.json defines all the dependencies and the metadata of the project. When you invoke **npm i** in command line, all the libraries  defined in this file are installed into your OS if they are missing.
+
+In fact, the libraries are linked into the project when their related js file is included inside the html file. Fo instance the excerpt below includes Angular 2 and RxJS into our project:
+
+    <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+	<script src="/node_modules/angular2/bundles/angular2.min.js">
+	</script>
+
+Please be aware of the path. When you install a package with NPM (NodeJS package manager), related files are bundled inside node_modules folder. The relative path must point to this folder. After that you may point to the library you want.
+
+
