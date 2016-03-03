@@ -9,8 +9,7 @@ https://github.com/auth0/nodejs-jwt-authentication-sample
 
 Then, some corrections according to Angular2 modifications have been done and code simplified for beginners.
 
-**Usage:**
-
+##Using client:##
 Client is using *gulp* for triggering
 
  1. Transpiling ES6 code to Javascript
@@ -40,7 +39,7 @@ Then start the client with
 
 ----------
 
-**Using server**
+##Using server
 
 Server is running on NodeJS. So ensure that you have NodeJS installed.
 Then, start the server with
@@ -51,7 +50,7 @@ Then, start the server with
 ----------
 
 
-**Further Explanation on client project**
+##Further Explanation on client project##
 
 Angular2 uses **Typescript**. 
 
@@ -69,4 +68,3 @@ This code will asynchronously load the modules to the application.
 SystemJS depends on some other libraries namely  *ES6 module loader polyfill* and *Traceur*. You will see that libraries are linked to the project inside *package.json*.
 
 package.json defines all the dependencies and the metadata of the project. When you invoke **npm i** in command line, all the libraries  defined in this file are installed into your OS if they are missing.
-
