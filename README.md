@@ -66,9 +66,7 @@ You will see module loading codes inside index.html with SystemJS such as
 
 This code will asynchronously load the modules to the application.
 
-SystemJS depends on some other libraries namely  *ES6 module loader polyfill* and *Traceur*.
-
-You will see that libraries are linked to the project inside *package.json*.
+SystemJS depends on some other libraries namely  *ES6 module loader polyfill* and *Traceur*. You will see that libraries are linked to the project inside *package.json*.
 
 package.json defines all the dependencies and the metadata of the project. When you invoke **npm i** in command line, all the libraries  defined in this file are installed into your OS if they are missing.
 
