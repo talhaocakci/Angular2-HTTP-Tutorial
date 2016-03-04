@@ -111,14 +111,20 @@ Angular 2 components simply consists of:
 
 #### Angular 2 Directive
 When < random-app > tag is seen by Angular 2, it searches for a directive inside the project. A directive might be anything that can be executed in Angular 2. For instance a component is also a directive with some html template inside it. 
-Everytime, a directive is used for breaking a solution into smaller pieces. Each directive packages some functionality and/or some DOM structure.
+
+> Everytime, a directive is used for breaking a solution into smaller
+> pieces. Each directive packages some functionality and/or some DOM
+> structure.
 
 You may define your own directives and you may use the built-in directives such as validation, collection iteration etc..
 
 #### Composing components with Dependency Injection
 Dependency Injection means, composition of any object is controlled by not the developer but any other representative mechanism so that all the inner objects of an object is created from scratch or gathered from somewhere else and then injected into this object.
 
-Since Angular 2 pay attention to modularity, reusable and testable code, every object is managed by dependency injection. Components do not create each other but they only declare their dependencies. And the rest is done by dependency injection mechanism.
+> Since Angular 2 pay attention to modularity, reusable and testable
+> code, every object is managed by dependency injection. Components do
+> not create each other but they only declare their dependencies. And
+> the rest is done by dependency injection mechanism.
 
 Eeach component may declare what other components it depends by bootstrap method. In both hello.ts and app.ts, you will see bootstrap method invocation such as 
 
@@ -138,5 +144,9 @@ You will see a button:
 getRandomQuote() is simply a method inside App class as you see.
 
 The weird part is (click) part. It is not a regular HTML attribute. This is one of the most-hated syntax of Angular 2. We have several syntax rules for using Angular 2 specific directives. I will not talk about them for now. 
-For now, just know that, (click) simply says this button will invoke a method of the class that this component is related to. If we have used click nakedly, that would expect a regular javascript method inside the html page. (Not inside the component.)
+
+> For now, just know that, (click) simply says this button will invoke a
+> method of the class that this component is related to.
+
+ If we have used click nakedly, that would expect a regular javascript method inside the html page. (Not inside the component.)
 
