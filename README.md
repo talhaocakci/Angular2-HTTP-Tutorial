@@ -150,3 +150,39 @@ The weird part is (click) part. It is not a regular HTML attribute. This is one 
 
  If we have used click nakedly, that would expect a regular javascript method inside the html page. (Not inside the component.)
 
+###Binding component view and the values
+Let me repeat, component means the combination of some data, some functionality and some view to interact with.
+So far we learnt how to create a view and invoking a method from the view. Now lets learn how to bind the data and its visualization.
+
+Angular 2 uses one-way binding. That means when data is modified inside the component, it is reflected to the view automatically.
+
+Inside hello.ts, we defined HelloApp class and then export it. Let's check:
+
+    export class HelloApp {
+    osman: string = 'World';
+
+    assignCustomValue(e){
+    this.osman = e.target.value
+    }
+}
+
+HelloApp class has only one string attribute named "osman". This is completely meaningless custom name.  (Otherwise beginners may suppose it is a built-in value)
+
+And this method has assignValueMethod method that can be used inside the template of the component. The values here may reflect to each other with some special directives. Let me explain them:
+
+      <h1>Hello, {{osman}}!</h1>
+	  Say hello to: <input [value]="osman" (input)="assignCustomValue($event)">
+    
+At first glance, we see some weird syntax. 
+1- First one is **{{osman}}**. This is called as **interpolation** and reflects the values of *osman* attribute immediately to the HTML.
+2- Second is [value] syntax. 
+**[value]="osman"** means that value of this input text will be equal to the value of the osman attribute's value. Every time! Immediately! This is the magic of Angular.
+3- Third one is (input)="assignCustomValue($event)"
+That means, whenever the value is changed in input textfield, the change event will be passed to method assignCustomValue with the fired event.
+
+Now let's see what that method does:
+
+    assignCustomValue(e){
+    this.osman = e.target.value
+    }
+It simply gets the new value from the fired event and assign it to osman attribute. We are familiar with osman attribute, already, right? Whenever the value of it changes, it will be reflected to the {{osman}}. In short, whenever the value in input textfield changes, it will be reflected to the < h1 >  field.
