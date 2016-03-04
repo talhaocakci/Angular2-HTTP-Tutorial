@@ -174,10 +174,12 @@ And this method has assignValueMethod method that can be used inside the templat
 	  Say hello to: <input [value]="osman" (input)="assignCustomValue($event)">
     
 At first glance, we see some weird syntax. 
-1- First one is **{{osman}}**. This is called as **interpolation** and reflects the values of *osman* attribute immediately to the HTML.
-2- Second is [value] syntax. 
+
+
+ 1. First one is **{{osman}}**. This is called as **interpolation** and reflects the values of *osman* attribute immediately to the HTML.
+ 2. Second is [value] syntax. 
 **[value]="osman"** means that value of this input text will be equal to the value of the osman attribute's value. Every time! Immediately! This is the magic of Angular.
-3- Third one is (input)="assignCustomValue($event)"
+ 3. Third one is (input)="assignCustomValue($event)"
 That means, whenever the value is changed in input textfield, the change event will be passed to method assignCustomValue with the fired event.
 
 Now let's see what that method does:
@@ -186,3 +188,6 @@ Now let's see what that method does:
     this.osman = e.target.value
     }
 It simply gets the new value from the fired event and assign it to osman attribute. We are familiar with osman attribute, already, right? Whenever the value of it changes, it will be reflected to the {{osman}}. In short, whenever the value in input textfield changes, it will be reflected to the < h1 >  field.
+
+#server side
+TO-DO
