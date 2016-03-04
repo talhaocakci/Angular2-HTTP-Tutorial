@@ -125,3 +125,17 @@ Eeach component may declare what other components it depends by bootstrap method
     bootstrap(App, [HTTP_BINDINGS])
  
  This basically declares our App class to DI mechanism and asks for a HTTP_BINDINGS instance when the App instance is created.
+
+##Combining view and the class inside a component
+As you know, an Angular2 component simply composed of a class and a view for visualizing the data inside.
+And the view part simply is a HTML snippet. HTML snippet may contain some buttons, input text fields to interact with the user. Now, the cool part is this: a button may directly invoke a method inside the class.
+Now check app.ts
+You will see a button:
+
+    <button (click)="getRandomQuote()">Get Random Quote!</button>
+
+getRandomQuote() is simply a method inside App class as you see.
+
+The weird part is (click) part. It is not a regular HTML attribute. This is one of the most-hated syntax of Angular 2. We have several syntax rules for using Angular 2 specific directives. I will not talk about them for now. 
+For now, just know that, (click) simply says this button will invoke a method of the class that this component is related to. If we have used click nakedly, that would expect a regular javascript method inside the html page. (Not inside the component.)
+
