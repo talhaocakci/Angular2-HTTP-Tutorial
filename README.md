@@ -87,3 +87,30 @@ All the modules and libraries are imported into the project via this file. Javas
       System.import('dist/hello')
 
 dist folder contains the javascript components that is converted from TypeScript.
+
+Inside index.html, notice this code block:
+
+    <body>
+         <random-app>Loading...</random-app>
+         <hello-app>Loading...</hello-app>
+    </body>
+ 
+ **random-app** and **hello-app** tags include an Angular 2 component. Here the show starts. This is the first place we faced an Angular 2 component that is one of the most important items of Angular architecture.
+ 
+ This components are defined in a separate file under src file. These are:
+*hello.ts* and *app.ts*
+
+Let's inspect them:
+
+###Angular 2 component
+
+Angular 2 components simply consists of:
+1- A typescript class (converted into javascript)
+2- View. This is called as template in Angular 2 and this template can be a direct html snippet or a html file reference. Note that the root element should not be *html* but a *div*.
+3- A @Component annotation. This annotation is a feature of Angular 2 and exposes a TypeScript class as a component. *selector* attribute defines the name of the tag that will be used inside html snippet. You remember < random-app > ? This is it.
+
+When < random-app > tag is seen by Angular 2, it searches for a directive inside the project. A directive might be anything that can be executed in Angular 2. For instance a component is also a directive with some html template inside it. 
+Everytime, a directive is used for breaking a solution into smaller pieces. Each directive packages some functionality and/or some DOM structure.
+
+You may define your own directives and you may use the built-in directives such as validation, collection iteration etc..
+
