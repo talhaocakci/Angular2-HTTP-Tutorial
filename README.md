@@ -124,7 +124,8 @@ Eeach component may declare what other components it depends by bootstrap method
 
     bootstrap(App, [HTTP_BINDINGS])
  
- This basically declares our App class to DI mechanism and asks for a HTTP_BINDINGS instance when the App instance is created.
+This basically declares our App class to DI mechanism and asks for a HTTP_BINDINGS instance when the App instance is created.
+First parameter is the name of the class. Second parameter is an array, and inside this array, you will declare the class names that App class need to have.
 
 ##Combining view and the class inside a component
 As you know, an Angular2 component simply composed of a class and a view for visualizing the data inside.
