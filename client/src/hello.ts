@@ -5,12 +5,16 @@ import {bootstrap} from 'angular2/platform/browser';
 @Component({
     selector: 'hello-app',
     template: `
-        <h1>Hello, {{name}}!</h1>
-        Say hello to: <input [value]="name" (input)="name = $event.target.value">
+        <h1>Hello, {{osman}}!</h1>
+        Say hello to: <input [value]="osman" (input)="assignCustomValue($event)">
     `
 })
 export class HelloApp {
-    name: string = 'World';
+    osman: string = 'World';
+
+    assignCustomValue(e){
+    this.osman = e.target.value
+    }
 }
 
 bootstrap(HelloApp);

@@ -22,7 +22,7 @@ So, you can install all the dependencies first with
 In case you got some authentication errors change it to:
 **sudo npm i**
 
-Then start the client with 
+Then start the client with
 **gulp play**
 
 *play* task is defined as serving on 9000 port and listening any modifications on files with gulpfile.js
@@ -53,14 +53,14 @@ Then, start the server with
 ##Further Explanation on client project##
 
 ####TypeScript####
-Angular2 uses **Typescript**. 
+Angular2 uses **Typescript**.
 
 TypeScript = ES6 + powerful type checking abilities + object oriented features
 
 Even the ES6 itself is not natively supported by browsers yet. So, the TypeScript code should be converted into current Javascript with TypeScript platform.
 
 Angular2 uses modules. Modules are installed and communicated with each other with SystemJS.
-You will see module loading codes inside index.html with SystemJS such as 
+You will see module loading codes inside index.html with SystemJS such as
 
       System.import('dist/hello')
 
@@ -82,11 +82,12 @@ Please be aware of the path. When you install a package with NPM (NodeJS package
 
 #### index.html ####
 This page is the single page of our SPA (single page application)
-All the modules and libraries are imported into the project via this file. Javascript imports link the external modules. And the Angular 2 components are imported with SystemJS as I said before with 
+All the modules and libraries are imported into the project via this file. Javascript imports link the external modules. And the Angular 2 components are imported with SystemJS as I said before with
 
       System.import('dist/hello')
 
 dist folder contains the javascript components that is converted from TypeScript.
+
 
 Inside index.html, notice this code block:
 
@@ -94,9 +95,9 @@ Inside index.html, notice this code block:
          <random-app>Loading...</random-app>
          <hello-app>Loading...</hello-app>
     </body>
- 
+
  **random-app** and **hello-app** tags include an Angular 2 component. Here the show starts. This is the first place we faced an Angular 2 component that is one of the most important items of Angular architecture.
- 
+
  This components are defined in a separate file under src file. These are:
 *hello.ts* and *app.ts*
 
@@ -110,7 +111,7 @@ Angular 2 components simply consists of:
 3- A @Component annotation. This annotation is a feature of Angular 2 and exposes a TypeScript class as a component. *selector* attribute defines the name of the tag that will be used inside html snippet. You remember < random-app > ? This is it.
 
 #### Angular 2 Directive
-When < random-app > tag is seen by Angular 2, it searches for a directive inside the project. A directive might be anything that can be executed in Angular 2. For instance a component is also a directive with some html template inside it. 
+When < random-app > tag is seen by Angular 2, it searches for a directive inside the project. A directive might be anything that can be executed in Angular 2. For instance a component is also a directive with some html template inside it.
 
 > Everytime, a directive is used for breaking a solution into smaller
 > pieces. Each directive packages some functionality and/or some DOM
@@ -126,10 +127,10 @@ Dependency Injection means, composition of any object is controlled by not the d
 > not create each other but they only declare their dependencies. And
 > the rest is done by dependency injection mechanism.
 
-Eeach component may declare what other components it depends by bootstrap method. In both hello.ts and app.ts, you will see bootstrap method invocation such as 
+Eeach component may declare what other components it depends by bootstrap method. In both hello.ts and app.ts, you will see bootstrap method invocation such as
 
     bootstrap(App, [HTTP_BINDINGS])
- 
+
 This basically declares our App class to DI mechanism and asks for a HTTP_BINDINGS instance when the App instance is created.
 First parameter is the name of the class. Second parameter is an array, and inside this array, you will declare the class names that App class need to have.
 
@@ -143,7 +144,7 @@ You will see a button:
 
 getRandomQuote() is simply a method inside App class as you see.
 
-The weird part is (click) part. It is not a regular HTML attribute. This is one of the most-hated syntax of Angular 2. We have several syntax rules for using Angular 2 specific directives. I will not talk about them for now. 
+The weird part is (click) part. It is not a regular HTML attribute. This is one of the most-hated syntax of Angular 2. We have several syntax rules for using Angular 2 specific directives. I will not talk about them for now.
 
 > For now, just know that, (click) simply says this button will invoke a
 > method of the class that this component is related to.
@@ -172,12 +173,12 @@ And this method has assignValueMethod method that can be used inside the templat
 
       <h1>Hello, {{osman}}!</h1>
 	  Say hello to: <input [value]="osman" (input)="assignCustomValue($event)">
-    
-At first glance, we see some weird syntax. 
+
+At first glance, we see some weird syntax.
 
 
  1. First one is **{{osman}}**. This is called as **interpolation** and reflects the values of *osman* attribute immediately to the HTML.
- 2. Second is [value] syntax. 
+ 2. Second is [value] syntax.
 **[value]="osman"** means that value of this input text will be equal to the value of the osman attribute's value. Every time! Immediately! This is the magic of Angular.
  3. Third one is (input)="assignCustomValue($event)"
 That means, whenever the value is changed in input textfield, the change event will be passed to method assignCustomValue with the fired event.
