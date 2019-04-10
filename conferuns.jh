@@ -1,0 +1,225 @@
+entity Conference
+{
+	conference_id Long,
+	main_name String, //main_name (dev not, goto gibi)
+    sub_name String, // Go To Amsterdam gibi
+    main_topic ConferenceTopic,
+	sub_topic String,
+	description String,
+	is_free Boolean,
+	language LANGUAGE,
+	startDate Instant,
+    endDate Instant,
+	last_talk_submission_time Instant
+    
+    // relations
+    //places
+    //list of talk
+}
+
+entity Place {
+  place_id Long,
+  country String,
+  state String,
+  city String,
+  district String,
+  street String,
+  doorNo String,
+  building name String
+}
+
+entity Room {
+	roomId Long,
+    placeId Long, // in which place
+    roomName String,
+    floor Integer,
+    capacity Integer
+    // other attributes. bilg var mi engelli koltugu var mi gibi
+}
+
+entity Talk {
+	conference Conference,
+	presenter Presenter,
+	language String,
+	main_topic String, //(Programlama)
+	sub_topic String, //(Mikroservis)
+	
+    // relations
+    list of subject
+}
+
+entity Topic {
+	category String, // bunlari bi dusunmem lazim, nasil tree yapariz
+    subCategory String,
+    topicName
+}
+
+entity Subject {
+	topic Topic, // bunlari bi dusunmem lazim, nasil tree yapariz
+    difficulty Integer, // 10 uzerinden zorluk'
+    audience Audience
+}
+
+enum Audience {
+BEGINNER, MID_LEVEL, EXPERIENCED
+}
+
+entity ScheduleItem {
+	talk Talk,
+    conference Conference,
+    presenter Presenter,
+    fromTime Instant,
+    tillTime Instant
+}
+
+entity Fee {
+	conferenceId Long,
+    feeLabel String, // early bird gibi
+	fromTime Instant
+	tillTime Instant
+	price Double,
+	specialTo SpecialParticipantType
+}
+
+enum SpecialParticipantType {
+	STUDENT, DISABLE, WOMAN, VETERAN
+}
+	
+
+enum ConferenceTopic {
+	SOFTWARE_ENGINEERING,
+	FINANCE, 
+	SPORTS
+}
+
+enum Language {
+	ENGLISH,
+	TURKISH,
+    FRENCH, ENGLISH, SPANISH
+}
+
+entity TalkParticipant {
+	talk Talk,
+    participant Participant,
+    checkedId Boolean,
+    plannedToGo Boolean,
+    favorited Boolean
+}
+
+entity Participant {
+    participantId Long,
+    user User,
+    conference Conference
+}
+	
+entity User {
+    userId Long,	
+	userName String,
+	user_surname String,
+    password String,
+    lastLoginTime Instant,
+    isBlocked Boolean,
+    isActivated Boolean
+	//(details)
+}
+    
+entity Presenter {
+	presenter_id Long,
+	user User, // each presenter should also be useer of the system
+	totalTechnicalPoints Double,
+	average_technical_points Double,
+	totalSpeakingPoints Double,
+	averageSpeakingPoints Double
+	totalExcitementPoints Double,
+	averageExcitementPoints Double    
+}
+
+entity TalkHistory {
+	presenter Presenter,
+    conference Conference,
+    talk Talk,
+    date Instant,
+	totalAudience Long,
+    totalTechnicalPoints Double,
+	average_technical_points Double,
+	totalSpeakingPoints Double,
+	averageSpeakingPoints Double
+	totalExcitementPoints Double,
+	averageExcitementPoints Double 
+}
+
+relationship OneToMany {
+	Conference{scheduleItems} to Schedule,
+	ScheduleItem{conference} to Conference
+}
+
+
+
+entity Job {
+	jobTitle String,
+	minSalary Long,
+	maxSalary Long
+}
+
+entity JobHistory {
+	startDate Instant,
+	endDate Instant,
+	language Language
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+
+relationship OneToOne {
+	Country{region} to Region
+}
+
+relationship OneToOne {
+	Location{country} to Country
+}
+
+relationship OneToOne {
+	Department{location} to Location
+}
+
+relationship ManyToMany {
+	Job{task(title)} to Task{job}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Employee{job} to Job,
+	/**
+	* A relationship
+	*/
+	Department{employee} to
+	/**
+	* Another side of the same relationship
+	*/
+	Employee
+}
+
+relationship ManyToOne {
+	Employee{manager} to Employee
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+	JobHistory{job} to Job,
+	JobHistory{department} to Department,
+	JobHistory{employee} to Employee
+}
+
+// Set pagination options
+paginate JobHistory, Employee with infinite-scroll
+paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
